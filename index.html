@@ -32,7 +32,6 @@
             position: relative;
         }
 
-        /* Sternenhimmel */
         .stars {
             position: fixed;
             top: 0;
@@ -57,7 +56,6 @@
             50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Feuerwerk Container */
         .fireworks-container {
             position: fixed;
             top: 0;
@@ -93,7 +91,6 @@
             }
         }
 
-        /* Header - Startet die Show */
         header {
             position: fixed;
             top: 50%;
@@ -139,7 +136,6 @@
             opacity: 0.9;
         }
 
-        /* Content Container - für Sprüche und Namen */
         .content-container {
             position: fixed;
             top: 0;
@@ -151,7 +147,6 @@
             overflow: hidden;
         }
 
-        /* Star Wars Style Text - SCHNELLER */
         .text-item {
             position: absolute;
             left: 50%;
@@ -167,18 +162,15 @@
             padding: 0 2rem;
         }
 
-        /* Weise Sprüche - größer, kursiv */
         .wisdom-text {
             font-size: clamp(1.8rem, 5vw, 3.5rem);
             font-weight: 400;
             color: var(--gold);
             font-style: italic;
             letter-spacing: 0.05em;
-            animation: fast-crawl 12s linear forwards;
-            white-space: normal;
+            animation: fast-crawl 8s linear forwards;
         }
 
-        /* Namen - noch größer, fett */
         .name-text {
             font-family: 'Cinzel', serif;
             font-size: clamp(2.5rem, 7vw, 5rem);
@@ -186,20 +178,17 @@
             color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            animation: fast-crawl 12s linear forwards;
+            animation: fast-crawl 8s linear forwards;
             filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.9));
-            white-space: normal;
         }
 
-        /* Kommentar-Text - mittelgroß */
         .comment-text {
             font-size: clamp(1.5rem, 4vw, 2.8rem);
             font-weight: 300;
             color: var(--cream);
             font-style: italic;
             letter-spacing: 0.03em;
-            animation: fast-crawl 12s linear forwards;
-            white-space: normal;
+            animation: fast-crawl 8s linear forwards;
         }
 
         @keyframes fast-crawl {
@@ -209,9 +198,6 @@
                 transform: translateX(-50%) rotateX(25deg) scale(2);
             }
             5% {
-                opacity: 1;
-            }
-            50% {
                 opacity: 1;
             }
             95% {
@@ -224,7 +210,6 @@
             }
         }
 
-        /* Finale GIF-Anzeige */
         .final-gif {
             position: fixed;
             top: 50%;
@@ -236,8 +221,7 @@
             max-height: 90vh;
             border-radius: 20px;
             border: 4px solid var(--gold);
-            box-shadow: 0 0 100px rgba(255, 215, 0, 0.8),
-                        0 0 200px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 100px rgba(255, 215, 0, 0.8);
             transition: all 2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -253,282 +237,152 @@
             border-radius: 16px;
         }
 
-        /* GIF Platzhalter */
-        .gif-placeholder {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.1));
-            padding: 4rem;
-            border-radius: 16px;
-            text-align: center;
-            color: var(--gold);
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-style: italic;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Audio Control Button */
-        .audio-control {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 100;
-            background: linear-gradient(135deg, var(--gold), var(--bright-gold));
-            color: var(--midnight);
-            border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1rem;
-            box-shadow: 0 5px 30px rgba(255, 215, 0, 0.5);
-            transition: all 0.3s;
-        }
-
-        .audio-control:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 40px rgba(255, 215, 0, 0.8);
-        }
-
-        /* Feuerwerk Farben */
         .fw-red { background: #ff0844; box-shadow: 0 0 10px #ff0844; }
         .fw-gold { background: #FFD700; box-shadow: 0 0 10px #FFD700; }
         .fw-blue { background: #00d9ff; box-shadow: 0 0 10px #00d9ff; }
         .fw-white { background: #ffffff; box-shadow: 0 0 10px #ffffff; }
         .fw-purple { background: #b829ff; box-shadow: 0 0 10px #b829ff; }
         .fw-green { background: #00ff88; box-shadow: 0 0 10px #00ff88; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .text-item {
-                padding: 0 1rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Audio Element -->
-    <audio id="backgroundMusic" loop>
-        <!-- HIER DEINE MUSIK-DATEI EINFÜGEN -->
-        <!-- Beispiel: FourFiveSeconds.mp3 (du brauchst eine legale Kopie!) -->
+    <audio id="backgroundMusic" loop autoplay>
         <source src="music.mp3" type="audio/mpeg">
-        <source src="music.ogg" type="audio/ogg">
     </audio>
 
-    <!-- Audio Control Button -->
-    <button class="audio-control" id="audioBtn" onclick="toggleAudio()">
-        🔊 Sound An
-    </button>
-
-    <!-- Sternenhimmel -->
     <div class="stars" id="stars"></div>
-
-    <!-- Feuerwerk Container -->
     <div class="fireworks-container" id="fireworks"></div>
 
-    <!-- Header - verschwindet nach 5 Sekunden -->
     <header id="header">
         <h1>2026</h1>
         <p class="subtitle">Prosit Neujahr</p>
     </header>
 
-    <!-- Content Container für durchziehende Texte -->
     <div class="content-container" id="content"></div>
 
-    <!-- Finales GIF -->
     <div class="final-gif" id="finalGif">
-        <!-- HIER DEIN GIF EINFÜGEN -->
-        <img src="neujahr-2026.gif" alt="Neujahr 2026" onerror="this.parentElement.innerHTML='<div class=\'gif-placeholder\'>🎆<br><br>Hier erscheint dein<br>Neujahrs-GIF<br><br>Datei: neujahr-2026.gif</div>'">
+        <img src="finale.gif" alt="Celebration">
     </div>
 
     <script>
-        // ========================================
-        // SKRIPT MIT IRONISCHEN SPRÜCHEN
-        // ========================================
-        
-        const script = [
-            // Ironische, witzige Sprüche mit schwarzem Humor
-            { type: 'wisdom', text: 'Ein neues Jahr - selbe Ausreden, neues Datum' },
-            { type: 'wisdom', text: 'Gute Vorsätze? Die halten bis zum ersten Döner' },
-            { type: 'wisdom', text: 'Diesmal wird alles anders... sagten wir auch letztes Jahr' },
-            { type: 'wisdom', text: 'Neues Jahr, neue Schulden... äh... Chancen!' },
-            
-            // ALLE NAMEN ZUSAMMEN
-            { type: 'name', text: 'Maria • Thomas • Familie Schmidt • Sarah • Anna • Peter' },
-            
-            // Kommentar
-            { type: 'comment', text: 'Das gilt auch für euch!' },
-            
-            // Mehr ironische Sprüche
-            { type: 'wisdom', text: 'Sport? Ja, ab Januar... oder Februar... März vielleicht?' },
-            { type: 'wisdom', text: 'Weniger Alkohol trinken - außer an Geburtstagen, Wochenenden und Dienstagen' },
-            { type: 'wisdom', text: 'Früher aufstehen! Sagt die Schlange vor dem Bäcker um 11 Uhr' },
-            
-            // Namen wiederholen
-            { type: 'name', text: 'Maria • Thomas • Familie Schmidt • Sarah • Anna • Peter' },
-            
-            // Kommentar
-            { type: 'comment', text: 'Ist euch das klar?' },
-            
-            // Noch mehr Sprüche
-            { type: 'wisdom', text: 'Gesünder essen - Pizza hat Tomaten, Tomaten sind Gemüse. FAKTEN!' },
-            { type: 'wisdom', text: 'Mehr Zeit für Familie... auf WhatsApp zählt auch, oder?' },
-            { type: 'wisdom', text: 'Weniger Stress haben - nach diesem Neujahrsgruß definitiv!' },
-            { type: 'wisdom', text: 'Geld sparen für die Zukunft - oder für den nächsten Online-Shop' },
-            
-            // Namen nochmal
-            { type: 'name', text: 'Maria • Thomas • Familie Schmidt • Sarah • Anna • Peter' },
-            
-            // Mehr schwarzer Humor
-            { type: 'wisdom', text: 'Positiv denken! Wenigstens sind wir nicht 2020' },
-            { type: 'wisdom', text: 'Das Leben ist kurz - aber die Arbeitswoche erschreckend lang' },
-            { type: 'wisdom', text: 'Carpe Diem! Aber erstmal Kaffee' },
-            { type: 'wisdom', text: 'Sei spontan! Aber bitte mit 3 Wochen Vorlauf' },
-            
-            // Der finale Spruch
-            { type: 'wisdom', text: 'Tanzt und denkt, mehr braucht es nicht.' },
-        ];
-
-        // ========================================
-        // AB HIER NICHTS ÄNDERN (außer du weißt was du tust)
-        // ========================================
-
-        let textIndex = 0;
-        const textDelay = 6000; // 6 Sekunden zwischen Texten (schneller!)
-        const gifDelay = textDelay * (script.length + 1); // GIF am Ende
-        let audioPlaying = false;
-        const audio = document.getElementById('backgroundMusic');
-
-        // Audio-Steuerung
-        function toggleAudio() {
-            const btn = document.getElementById('audioBtn');
-            if (audioPlaying) {
-                audio.pause();
-                btn.textContent = '🔊 Sound An';
-                audioPlaying = false;
-            } else {
-                audio.play().catch(e => {
-                    console.log('Audio konnte nicht abgespielt werden:', e);
-                    alert('Bitte einmal klicken um Sound zu starten!');
-                });
-                btn.textContent = '🔇 Sound Aus';
-                audioPlaying = true;
-            }
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            starsContainer.appendChild(star);
         }
 
-        // Versuche Autoplay (funktioniert nicht immer wegen Browser-Policies)
-        window.addEventListener('load', () => {
-            audio.play().then(() => {
-                audioPlaying = true;
-                document.getElementById('audioBtn').textContent = '🔇 Sound Aus';
-            }).catch(() => {
-                // Autoplay blockiert - User muss Button klicken
-                console.log('Autoplay blockiert - Nutzer muss Sound manuell starten');
-            });
-        });
-
-        // Erstelle Sternenhimmel
-        function createStars() {
-            const container = document.getElementById('stars');
-            for (let i = 0; i < 200; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 4 + 's';
-                star.style.animationDuration = (3 + Math.random() * 3) + 's';
-                container.appendChild(star);
-            }
-        }
-
-        // Erstelle ein Feuerwerk
         function createFirework() {
-            const container = document.getElementById('fireworks');
+            const fireworksContainer = document.getElementById('fireworks');
             const colors = ['fw-red', 'fw-gold', 'fw-blue', 'fw-white', 'fw-purple', 'fw-green'];
-            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * (window.innerHeight * 0.6);
             
             const firework = document.createElement('div');
             firework.className = 'firework';
-            firework.style.left = (20 + Math.random() * 60) + '%';
-            firework.style.top = (20 + Math.random() * 40) + '%';
+            firework.style.left = x + 'px';
+            firework.style.top = y + 'px';
             
-            const particleCount = 30 + Math.floor(Math.random() * 20);
+            const particleCount = 30;
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
-                particle.className = `firework-particle ${color}`;
+                particle.className = 'firework-particle ' + colors[Math.floor(Math.random() * colors.length)];
                 
-                const angle = (i / particleCount) * Math.PI * 2;
-                const velocity = 50 + Math.random() * 100;
+                const angle = (Math.PI * 2 * i) / particleCount;
+                const velocity = 50 + Math.random() * 50;
                 const tx = Math.cos(angle) * velocity;
                 const ty = Math.sin(angle) * velocity;
                 
                 particle.style.setProperty('--tx', tx + 'px');
                 particle.style.setProperty('--ty', ty + 'px');
-                particle.style.animationDelay = '0s';
-                particle.style.animationDuration = (1 + Math.random() * 0.5) + 's';
                 
                 firework.appendChild(particle);
             }
             
-            container.appendChild(firework);
+            fireworksContainer.appendChild(firework);
             
             setTimeout(() => {
                 firework.remove();
-            }, 2000);
+            }, 1500);
         }
 
-        // Zeige nächsten Text
-        function showNextText() {
-            if (textIndex >= script.length) return;
+        const script = [
+            // MARLA - Abschliessen und Übergänge
+            { type: 'wisdom', text: 'Lass Altes los und spring ins Neue' },
+            { type: 'name', text: 'Marla' },
+            { type: 'comment', text: 'Übergänge sind dein Ding!' },
             
-            const item = script[textIndex];
-            const container = document.getElementById('content');
+            // FRENA - Ankommen und Erfolg
+            { type: 'wisdom', text: 'Ankommen und durchstarten' },
+            { type: 'name', text: 'Frena' },
+            { type: 'comment', text: 'Erfolg kommt zu dir!' },
             
+            // ANDREA - Gestalten und Geniessen
+            { type: 'wisdom', text: 'Gestalte wild und geniess jeden Tag' },
+            { type: 'name', text: 'Andrea' },
+            { type: 'comment', text: 'Dein Jahr, deine Regeln!' },
+            
+            // BABO - Fliessen und Wasser
+            { type: 'wisdom', text: 'Fliess wie Wasser durchs Leben' },
+            { type: 'name', text: 'Babo' },
+            { type: 'comment', text: 'Lass es einfach laufen!' },
+            
+            { type: 'wisdom', text: 'Tanzt und denkt' },
+            { type: 'wisdom', text: 'Mehr braucht es nicht' }
+        ];
+
+        let currentIndex = 0;
+        const contentContainer = document.getElementById('content');
+        const header = document.getElementById('header');
+        const finalGif = document.getElementById('finalGif');
+        const audio = document.getElementById('backgroundMusic');
+
+        audio.play().catch(e => console.log('Autoplay blockiert'));
+
+        setTimeout(() => {
+            header.classList.add('hidden');
+            startScrolling();
+        }, 3000);
+
+        setInterval(createFirework, 1500);
+        for (let i = 0; i < 3; i++) {
+            setTimeout(createFirework, i * 500);
+        }
+
+        function startScrolling() {
+            if (currentIndex >= script.length) {
+                setTimeout(() => {
+                    finalGif.classList.add('show');
+                }, 1500);
+                return;
+            }
+
+            const item = script[currentIndex];
             const textElement = document.createElement('div');
-            textElement.className = `text-item ${item.type}-text`;
+            textElement.className = 'text-item';
+            
+            if (item.type === 'wisdom') {
+                textElement.className += ' wisdom-text';
+            } else if (item.type === 'name') {
+                textElement.className += ' name-text';
+            } else if (item.type === 'comment') {
+                textElement.className += ' comment-text';
+            }
+            
             textElement.textContent = item.text;
+            contentContainer.appendChild(textElement);
             
-            container.appendChild(textElement);
-            
-            // Lösche Text nach Animation (12 Sekunden)
             setTimeout(() => {
                 textElement.remove();
-            }, 12000);
+            }, 8000);
             
-            textIndex++;
-            
-            // Nächster Text
-            if (textIndex < script.length) {
-                setTimeout(showNextText, textDelay);
-            }
+            currentIndex++;
+            setTimeout(startScrolling, 4000);
         }
-
-        // Zeige finales GIF
-        function showFinalGif() {
-            const gif = document.getElementById('finalGif');
-            gif.classList.add('show');
-        }
-
-        // Initialisiere alles
-        window.addEventListener('load', () => {
-            createStars();
-            
-            // Starte Feuerwerk
-            setInterval(createFirework, 2000);
-            createFirework();
-            
-            // Verstecke Header nach 5 Sekunden
-            setTimeout(() => {
-                document.getElementById('header').classList.add('hidden');
-            }, 5000);
-            
-            // Starte Text-Sequenz nach 6 Sekunden
-            setTimeout(() => {
-                showNextText();
-            }, 6000);
-            
-            // Zeige GIF ganz am Ende
-            setTimeout(showFinalGif, gifDelay);
-        });
     </script>
 </body>
 </html>
