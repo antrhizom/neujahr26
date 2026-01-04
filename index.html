@@ -91,6 +91,35 @@
             }
         }
 
+        .start-button {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--gold), var(--bright-gold));
+            color: var(--midnight);
+            border: none;
+            padding: 2rem 4rem;
+            font-size: 2rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+            transition: all 0.3s;
+            opacity: 1;
+        }
+
+        .start-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .start-button.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
         header {
             position: fixed;
             top: 50%;
@@ -98,8 +127,12 @@
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 10;
-            opacity: 1;
+            opacity: 0;
             transition: opacity 2s;
+        }
+
+        header.show {
+            opacity: 1;
         }
 
         header.hidden {
@@ -246,9 +279,11 @@
     </style>
 </head>
 <body>
-    <audio id="backgroundMusic" loop autoplay>
+    <audio id="backgroundMusic" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
+
+    <button class="start-button" id="startButton">START</button>
 
     <div class="stars" id="stars"></div>
     <div class="fireworks-container" id="fireworks"></div>
@@ -311,22 +346,18 @@
         }
 
         const script = [
-            // MARLA - Abschliessen und Übergänge
             { type: 'wisdom', text: 'Lass Altes los und spring ins Neue' },
             { type: 'name', text: 'Marla' },
             { type: 'comment', text: 'Übergänge sind dein Ding!' },
             
-            // FRENA - Ankommen und Erfolg
             { type: 'wisdom', text: 'Ankommen und durchstarten' },
             { type: 'name', text: 'Frena' },
             { type: 'comment', text: 'Erfolg kommt zu dir!' },
             
-            // ANDREA - Gestalten und Geniessen
             { type: 'wisdom', text: 'Gestalte wild und geniess jeden Tag' },
             { type: 'name', text: 'Andrea' },
             { type: 'comment', text: 'Dein Jahr, deine Regeln!' },
             
-            // BABO - Fliessen und Wasser
             { type: 'wisdom', text: 'Fliess wie Wasser durchs Leben' },
             { type: 'name', text: 'Babo' },
             { type: 'comment', text: 'Lass es einfach laufen!' },
@@ -340,24 +371,31 @@
         const header = document.getElementById('header');
         const finalGif = document.getElementById('finalGif');
         const audio = document.getElementById('backgroundMusic');
+        const startButton = document.getElementById('startButton');
 
-        audio.play().catch(e => console.log('Autoplay blockiert'));
+        // Start Button Click
+        startButton.addEventListener('click', () => {
+            startButton.classList.add('hidden');
+            audio.play();
+            header.classList.add('show');
+            
+            setTimeout(() => {
+                header.classList.add('hidden');
+                startScrolling();
+            }, 3000);
 
-        setTimeout(() => {
-            header.classList.add('hidden');
-            startScrolling();
-        }, 3000);
-
-        setInterval(createFirework, 1500);
-        for (let i = 0; i < 3; i++) {
-            setTimeout(createFirework, i * 500);
-        }
+            setInterval(createFirework, 1500);
+            for (let i = 0; i < 3; i++) {
+                setTimeout(createFirework, i * 500);
+            }
+        });
 
         function startScrolling() {
             if (currentIndex >= script.length) {
+                console.log('Zeige GIF!');
                 setTimeout(() => {
                     finalGif.classList.add('show');
-                }, 1500);
+                }, 2000);
                 return;
             }
 
